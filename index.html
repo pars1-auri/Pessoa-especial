@@ -30,6 +30,20 @@
       <p class="assinatura">Pedro Augusto</p>
 
     </div>
+       <script>
+        function criarParticula() {
+         const p = document.createElement("div");
+         p.classList.add("particula");
+         p.style.left = Math.random() * 100 + "vw";
+         document.body.appendChild(p);
+
+         setTimeout(() => {
+        p.remove();
+    }, 5000);
+  }
+
+   setInterval(criarParticula, 200);
+</script>
 
   </body>
 </html>
