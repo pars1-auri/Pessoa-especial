@@ -2,51 +2,123 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  overflow: hidden;
+  background: radial-gradient(circle at center, #020617, #000);
   color: #e2e8f0;
 }
 
-/* Caixa principal */
+/* FUNDO COM PARTÍCULAS */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(#22d3ee 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moverFundo 20s linear infinite;
+  opacity: 0.15;
+}
+
+@keyframes moverFundo {
+  from { transform: translate(0,0); }
+  to { transform: translate(-200px, -200px); }
+}
+
+/* CAIXA */
 .container {
   max-width: 800px;
-  margin: 80px auto;
+  margin: 100px auto;
   padding: 40px;
   border-radius: 20px;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 
+    0 0 20px #22d3ee,
+    0 0 60px rgba(0,255,255,0.3);
+  text-align: center;
   backdrop-filter: blur(10px);
+  animation: entrar 1.5s ease;
+}
+
+/* ANIMAÇÃO DE ENTRADA */
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* TÍTULO NEON INSANO */
+.titulo {
+  font-size: 60px;
+  margin-bottom: 20px;
+  color: #22d3ee;
+  text-shadow:
+    0 0 10px #22d3ee,
+    0 0 20px #22d3ee,
+    0 0 40px #0ea5e9,
+    0 0 80px #0ea5e9;
+  animation: pulsar 2s infinite alternate;
+}
+
+@keyframes pulsar {
+  from { text-shadow: 0 0 10px #22d3ee; }
+  to { text-shadow: 0 0 40px #22d3ee; }
+}
+
+/* TEXTO */
+p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+/* BOTÃO TOP */
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: 2px solid #22d3ee;
+  border-radius: 10px;
+  background: transparent;
+  color: #22d3ee;
+  font-size: 16px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.container:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 50px rgba(0, 255, 255, 0.4);
+button:hover {
+  background: #22d3ee;
+  color: black;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #22d3ee;
 }
 
-/* Título estilo neon */
-.titulo {
-  text-align: center;
-  font-size: 40px;
-  margin-bottom: 25px;
-  color: #22d3ee;
-  text-shadow: 
-    0 0 5px #22d3ee,
-    0 0 10px #22d3ee,
-    0 0 20px #0ea5e9;
-}
-
-/* Texto */
-p {
-  font-size: 20px;
-  line-height: 1.7;
-  text-align: justify;
-}
-
-/* Assinatura */
+/* ASSINATURA */
 .assinatura {
-  text-align: right;
   margin-top: 30px;
   font-weight: bold;
   color: #38bdf8;
+}
+
+/* ELEMENTOS VOANDO */
+.particula {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: #22d3ee;
+  border-radius: 50%;
+  animation: subir 5s linear infinite;
+}
+
+@keyframes subir {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
 }
